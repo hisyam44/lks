@@ -16,7 +16,7 @@
 		public function select($rows,$table,$where = null){
 			$query = "select ".$rows." from ".$table;
 			if(!is_null($where)){
-				$query .= $where;
+				$query .= " ".$where;
 			}
 			$result = parent::query($query);
 			$final_result = [];
