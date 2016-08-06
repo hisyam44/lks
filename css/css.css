@@ -38,3 +38,32 @@
 	background: #3a87ad;
 	color: #fff;
 }
+img{
+	width: 100%;
+}
+.article {
+	text-align: justify;
+	padding: 10px 0px;
+}
+.article .title{
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+.article .image img{
+
+}
+.box{
+	padding: 10px;
+	text-align: center;
+}
+.box .title{
+	font-weight: bold;
+	font-size: 20;
+
+}
+.box .image{
+	padding: 10px 0px;
+}
+.box .content{
+	text-align: justify;
+}

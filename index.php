@@ -16,47 +16,53 @@
 <div class="container">
 	<div style="margin-top:50px;"></div>
 	<div class="row">
-		<div class="col-6">
+		<div class="col-9">
 			<div class="panel">
 				<div class="panel-header">Articles</div>
 				<div class="panel-body">
 					<?php
-						/*$articles = $database->select("*","articles","order by id desc");
-						foreach ($articles as $article) {
-							echo "<div>".$article['title']."</div>";
-							echo "<div>".$article['excerpt']."</div>";
-							echo "<div>".$article['published_at']."</div>";
-						}*/
+						if(isset($_GET['page'])){
+							if($_GET['page'] == "create"){
+								include "php/create.php";
+							}
+						}elseif(isset($_GET['article'])){
+								$article = $database->select("*","articles","where id = ".$_GET['article']);
+								$article = $article[0];
+								?>
+									<div class="box">
+										<div class="title"><?php echo $article['title']; ?></div>
+										<div class="published_at">Publish On <?php echo $article['published_at']; ?></div>
+										<div class="image">
+											<img src="<?php echo $article['photo']; ?>">
+										</div>
+										<div class="content"><?php echo $article['content']; ?></div>
+									</div>
+								<?php
+						}else{
+							$articles = $database->select("*","articles","order by id desc");
+							foreach ($articles as $article) {
+								?>
+								<div class="article">
+									<div class="title"><?php echo $article['title']; ?></div>
+									<div class="row">
+									<div class="col-4">
+										<div class="image">
+											<img src="<?php echo $article['photo']; ?>">
+										</div>	
+									</div>
+									<div class="col-8">
+										<div class="excerpt"><?php echo $article['excerpt']; ?><a href="index.php?article=<?php echo $article['id']; ?>">Baca Selengkapnya...</a></div>				
+									</div>
+									</div>
+								</div>
+								<?php
+							}
+						}
 					?>
-					<div class="row">
-						<div class="form">
-							<form>
-								<div class="input">
-									<label class="form-label">Title</label>
-									<input class="form-control"></input>
-								</div>
-								<div class="input">
-									<label class="form-label">Excerpt</label>
-									<input class="form-control"></input>
-								</div>
-								<div class="input">
-									<label class="form-label">Content</label>
-									<textarea class="form-control"></textarea>
-								</div>
-								<div class="input">
-									<input class="form-control blue" type="submit" value="POST"></input>
-								</div>
-							</form>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-6">
-			<div class="panel">
-				<div class="panel-header">Article</div>
-				<div class="panel-body">content</div>
-			</div>
+		<div class="col-3">
 		</div>
 	</div>
 </div>
